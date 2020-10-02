@@ -29,3 +29,31 @@ CREATE TABLE modstockdata (
 and then load the data from a csv file
 
 \COPY modstockdata FROM modstockdata.csv CSV
+
+
+
+
+
+GOOD commands.
+
+```
+--shows tables
+\dt+   
+
+
+--create new table from other tables data
+CREATE TABLE newdata AS 
+SELECT time, channel, throughput * 3 * random() FROM modstockdata;
+
+
+--how grafan likes its data
+SELECT
+  "time" AS "time",
+  metric,
+  avg(throughput) AS "throughput"
+FROM stockdata
+GROUP BY 1,2
+ORDER BY 1;
+
+
+```
